@@ -1,49 +1,31 @@
-grunt.initConfig({
-  pkg: grunt.file.readJSON('package.json'),
-  connect: {
-    app: {
-      options:{
-        port: 8000,base: "app",
-        keepalive: true,
-        debug: false
+module.exports = function(grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    uglify: {
+      options: {
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+      },
+      build: {
+        src: 'src/<%= pkg.name %>.js',
+        dest: 'build/<%= pkg.name %>.min.js'
       }
-    }
-  },
-  'gh-pages': {
-    options: {
-      base: 'app'
     },
-    src: ['**']
-  },
-  copy: {
-    mockapi: {
-      files: [
-      {
-        src: ['api/**'],
-        dest: 'app/bower_components/ozp-iwc/dist/',
-        cwd: 'app/bower_components/ozp-data-schemas/mock',
-        expand: true,
-        rename: function(dest, src) {
-          return dest + src.replace(/index\.json$/, "index.html");
-        }
-      }
-      ]
+
+    'gh-pages': {
+      options: {
+        base: 'src'
+      },
+      src: ['src']
     }
-  },
-  clean: {
-    mockapi: ['app/bower_components/ozp-iwc/dist/api']
-  }
-});
+  });
 
-grunt.loadNpmTasks('grunt-contrib-watch');
-grunt.loadNpmTasks('grunt-contrib-clean');
-grunt.loadNpmTasks('grunt-contrib-connect');
-grunt.loadNpmTasks('grunt-contrib-copy');
-grunt.loadNpmTasks('grunt-gh-pages');
+  // Load the plugin that provides the "uglify" task.
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-gh-pages');
 
-// Default task(s).
-grunt.registerTask('default', ['clean', 'copy', 'connect']);
-
-grunt.registerTask('build', ['clean', 'copy']);
+  // Default task(s).
+  grunt.registerTask('default', ['uglify']);
 
 };

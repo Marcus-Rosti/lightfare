@@ -1,0 +1,10 @@
+{
+  "name": "lightfare",
+  "description": "lightfare blog website",
+  "version": "0.1.0",
+  "license": "None",
+  "private": false,
+  "dependencies": {
+    "ghost": "latest",
+  }
+}

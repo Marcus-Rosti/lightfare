@@ -25,6 +25,7 @@
     "showdown-ghost": "0.3.4",
     "validator-js": "3.26.0",
     "google-caja": "5669.0.0"
+    "gh-pages": "latest"
   },
   "devDependencies": {
     "ember-mocha": "~0.1.4",

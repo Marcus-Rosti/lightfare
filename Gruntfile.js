@@ -13,6 +13,7 @@ var _              = require('lodash'),
     path           = require('path'),
     Promise        = require('bluebird'),
     request        = require('request'),
+    ghpages        = require('gh-pages');
 
     escapeChar     = process.platform.match(/^win/) ? '^' : '\\',
     cwd            = process.cwd().replace(/( |\(|\))/g, escapeChar + '$1'),
